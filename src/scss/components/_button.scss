@@ -9,14 +9,51 @@
     cursor: pointer;
     padding: 0.8rem 1rem;
     color: white;
-    min-width: 16rem;
+    min-width: 10rem;
     transition-duration: 0.3s;
     box-shadow: box-shadow-x1(rgba(255,255,255,0.2));
-    &:hover{
-        transition-duration: 0.3s;
-        box-shadow: box-shadow-x2(rgba(41,128,185,0.8));
+    
+    &.button--underLine{
+
+        position: relative;
+
+        &::after{
+            position: absolute;
+            bottom: -0.2rem;
+            right: 0;
+            left: 0;
+            content: "";
+            width: 0;
+            height: 0.2rem;
+            background-color: $primary-color;
+            transition-duration: 0.3s;
+            margin: auto;
+        }
+
+        background-color: transparent;
+        box-shadow: none;
+        border-bottom: 0.2rem solid lighten($back-color,10);
+
+        &:hover::after{
+            width: 100%;
+        }
+        &:active{
+            transform: scale(0.90);
+        }
+
+        &.button--active::after{
+            width: 100%;
+        }
+
     }
-    &:active{
-        transform: scale(0.98);
+    
+    &:not(.button--underLine){
+        &:hover{
+            transition-duration: 0.3s;
+            box-shadow: box-shadow-x2(rgba(41,128,185,0.8));
+        }
+        &:active{
+            transform: scale(0.98);
+        }
     }
 }

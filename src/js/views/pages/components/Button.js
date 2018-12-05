@@ -1,23 +1,15 @@
 const React = require('react');
 
 class Button extends React.Component{
-
-    getButton(){
-        if(this.props.isSubmit){
-            return [<input className='button button--submit' type='submit' value={this.props.value} />]
-        }else{
-            return [<button className='button'>{this.props.value}</button>]
-        }
-    }
-
     render(){
         return (
-            <React.Fragment>
-                {this.getButton()}
-            </React.Fragment>
-        );
+            <button
+            onClick={this.props.onClick}
+            className={`button${this.props.isUnderline?' button--underLine':''}${this.props.active?' button--active':''}`}>
+                {this.props.value}
+            </button>
+        )
     }
-
 }
 
 module.exports = Button;
