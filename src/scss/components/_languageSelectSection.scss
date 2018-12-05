@@ -1,0 +1,52 @@
+.languageSelectSection{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: $back-color;
+
+    transition-duration: 0.3s;
+
+    display: flex;  
+    justify-content: center;
+    align-items: center;
+
+    &.languageSelectSection--hidden{
+        transform: scale(10);
+        opacity: 0;
+        transition-duration: 0.3s;
+    }
+
+    &__box{
+        width: 28rem;
+        height: 28rem;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__heading{
+        align-self: center;
+    }
+
+    &__languageList{
+        padding: 0 3rem;
+        margin: 0;
+        list-style-type: none;
+
+        &>li{
+            height: 5rem;
+            line-height: 5rem;
+            transition-duration: 0.3s;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            &:hover{
+                background-color: darken($back-color, 2);
+            }
+        }
+
+    }
+
+}

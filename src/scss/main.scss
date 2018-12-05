@@ -20,12 +20,16 @@
 // 4. Layout-related sections
 @import
   'layout/header',
+  'layout/main',
+  'layout/footer',
   'layout/wrapper';
 
 // 5. Components
 @import
+  'components/languageSelectSection',
   'components/loadingSection',
   'components/loadingArea',
+  'components/mainSection',
   'components/input',
   'components/button';
 
