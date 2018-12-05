@@ -3,6 +3,7 @@
 // -----------------------------------------------------------------------------
 
 .header{
+    
     grid-area: header-start / 1 / header-end / -1;
     background-color: darken($back-color, 5);
 
