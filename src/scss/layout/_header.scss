@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+.header{
+    grid-area: header-start / 1 / header-end / -1;
+    background-color: darken($back-color, 5);
+
+    display: flex;
+    align-items: center;
+
+}
