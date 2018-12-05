@@ -1,6 +1,8 @@
 const React = require('react');
-const ReactDom = require('react-dom');
+const ReactDOM = require('react-dom');
 
 const IndexPage = require('./pages/IndexPage');
 
-ReactDom.render(<IndexPage />, document.querySelector("#wrapper"));
+const jsx = (<IndexPage />);
+
+ReactDOM.render(jsx, document.querySelector("#wrapper"));
