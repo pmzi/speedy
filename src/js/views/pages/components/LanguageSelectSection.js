@@ -24,12 +24,12 @@ class LanguageSelectSection extends React.Component{
                     <li data-value='JavaScript'>
                         JavaScript
                     </li>
-                    <li data-value='C'>
+                    {/* <li data-value='C'>
                         C/C++
                     </li>
                     <li data-value='PHP'>
                         PHP
-                    </li>
+                    </li> */}
                 </ul>
             </div>
 
