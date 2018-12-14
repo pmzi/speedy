@@ -48,9 +48,11 @@
     }
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "electron-compile": "^6.4.3",
     "electron-squirrel-startup": "^1.0.0",
-    "monaco-editor": "^0.15.6"
+    "monaco-editor": "^0.15.6",
+    "qs": "^6.6.0"
   },
   "devDependencies": {
     "babel-plugin-transform-async-to-generator": "^6.24.1",
