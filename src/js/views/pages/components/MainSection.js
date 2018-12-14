@@ -3,6 +3,8 @@ const React = require('react');
 const Button = require('./Button');
 const MonacoEditor = require('./MonacoEditor');
 
+const Speedy = require('../helpers/Speedy');
+
 const {connect} = require('react-redux');
 class MainSection extends React.Component{
 
@@ -112,6 +114,16 @@ class MainSection extends React.Component{
     calculate(){
      
         this.showLoading('Calculating');
+
+        Speedy.calculate(window.monacoSingleEditor.getValue()).then((result)=>{
+            
+            result = result.replace(/\$\$/g,'');
+            this.hideLoading();
+            this.props.dispatch({
+                type:'SHOW_RESULT',
+                functions:[result]
+            })
+        })
 
     }
 
