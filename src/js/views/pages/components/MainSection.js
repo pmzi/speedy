@@ -103,11 +103,30 @@ class MainSection extends React.Component{
 
     compare(){
         
-        this.showLoading('Comparing');
+        this.showLoading('Calculating...');
 
-        setTimeout(()=>{
-            this.doneLoading();
-        },1000)
+        Speedy.calculate(monacoCompareEditor.getValue(), monacoSingleEditorVS.getValue()).then((result)=>{
+            
+            this.showLoading("Comparing...")
+
+            Speedy.compare(result.functions).then((sign)=>{
+
+                this.doneLoading();
+
+                setTimeout(()=>{
+                    this.hideLoading();
+
+                    this.props.dispatch({
+                        type:'SHOW_RESULT',
+                        sign,
+                        functions: result.functionTexts
+                    })
+                },500)
+
+            })
+
+
+        })
 
     }
 
@@ -117,12 +136,16 @@ class MainSection extends React.Component{
 
         Speedy.calculate(window.monacoSingleEditor.getValue()).then((result)=>{
             
-            result = result.replace(/\$\$/g,'');
-            this.hideLoading();
-            this.props.dispatch({
-                type:'SHOW_RESULT',
-                functions:[result]
-            })
+            this.doneLoading();
+
+            setTimeout(()=>{
+                this.hideLoading();
+                this.props.dispatch({
+                    type:'SHOW_RESULT',
+                    functions:[result.functionTexts[0]]
+                })
+            },500)
+
         })
 
     }

@@ -44,7 +44,7 @@ class Speedy {
 
             result.functions.push(fn);
 
-            result.functionTexts.push(apiResult.results);
+            result.functionTexts.push(apiResult.results.replace(/\$\$/g,''));
 
         }
 
