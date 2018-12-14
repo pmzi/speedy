@@ -1,5 +1,7 @@
 const React = require('react');
 
+const {connect} = require('react-redux');
+
 class LanguageSelectSection extends React.Component{
 
     constructor(props){
@@ -12,7 +14,7 @@ class LanguageSelectSection extends React.Component{
 
     render(){
 
-        return (<div ref='wrapper' className={`none languageSelectSection${this.state.show? '' : ' languageSelectSection--hidden'}`}>
+        return (<div ref='wrapper' className={`languageSelectSection${this.state.show? '' : ' languageSelectSection--hidden none'}`}>
 
             <div className='languageSelectSection__box'>
                 <h2 className='languageSelectSection__heading'>
@@ -54,7 +56,10 @@ class LanguageSelectSection extends React.Component{
     }
 
     updateLanguage(language){
-
+        this.props.dispatch({
+            type:'UPDATE_LANGUAGE',
+            language
+        });
     }
 
     hide(){
@@ -71,4 +76,6 @@ class LanguageSelectSection extends React.Component{
 
 }
 
-module.exports = LanguageSelectSection;
+module.exports = connect((state)=>{
+    return state.general;
+})(LanguageSelectSection);

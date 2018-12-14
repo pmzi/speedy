@@ -1,5 +1,7 @@
 const React = require('react');
 
+const {connect} = require('react-redux');
+
 class MonacoEditor extends React.Component{
 
     constructor(props){
@@ -29,7 +31,7 @@ class MonacoEditor extends React.Component{
         self.module = undefined;
         
 
-        let selectedLanguage = this.props.selectedLanguage || 'javascript';
+        let selectedLanguage = this.props.language.toLowerCase() || 'javascript';
 
 		amdRequire(['vs/editor/editor.main'], ()=>{
 			this._editor = monaco.editor.create(document.getElementById(this.props.id), {
@@ -51,6 +53,8 @@ class MonacoEditor extends React.Component{
     componentDidUpdate(){
         // let selectedLanguage = this.props.selectedLanguage.latinName.toLowerCase();
         // monaco.editor.setModelLanguage(this._editor.getModel(), selectedLanguage)
+        console.log('s')
+        monaco.editor.setModelLanguage(this._editor.getModel(), this.props.language.toLowerCase() || 'javascript')
 
         this.editor.layout();
     }
@@ -67,4 +71,6 @@ class MonacoEditor extends React.Component{
 
 }
 
-module.exports = MonacoEditor;
+module.exports = connect((state)=>{
+    return state.general;
+})(MonacoEditor);

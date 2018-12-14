@@ -3,7 +3,8 @@ module.exports = (state = {
         show: false,
         text: '',
         status: 0
-    }
+    },
+    language: ''
 }, action)=>{
     switch(action.type){
         case 'LOADING_SHOW':
@@ -18,6 +19,9 @@ module.exports = (state = {
         console.log("DONE")
             state.loading = Object.assign({}, state.loading, {status:1});
             return Object.assign({},state);
+        break;
+        case 'UPDATE_LANGUAGE':
+            return Object.assign({},state,{language:action.language||'JavaScript'})
         break;
         default:
             return state;
