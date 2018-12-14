@@ -2,6 +2,8 @@ const JS = require('../compilers/JS');
 
 const js = new JS();
 
+const config = require('../../../../config/config');
+
 const AjaxHelper = require('./AjaxHelper');
 
 const interpolating = require('interpolating-polynomial');
@@ -22,7 +24,7 @@ class Speedy {
 
             const resultMap = new Map();
 
-            for (let i = 0; i < 5; i++) {
+            for (let i = config.testRange.from; i < config.testRange.to; i++) {
 
                 const modifiedCode = `const n = ${i};${code}`;
 
@@ -58,7 +60,7 @@ class Speedy {
 
         for(let fn of functions){
 
-            returnedNumbers.push(fn(10000000));
+            returnedNumbers.push(fn(config.testRange.infiniteNumber));
 
         }
 

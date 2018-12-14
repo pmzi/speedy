@@ -5,7 +5,8 @@ module.exports = {
     },
     testRange:{
         from: 0,
-        to: 5
+        to: 5,
+        infiniteNumber: 10000000
     },
     general: {
         github: 'https://github.com/pmzi/speedy'
