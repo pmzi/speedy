@@ -52,7 +52,7 @@ class Result extends React.Component{
             i++;
 
         }
-        console.log(this.props.sign)
+        
         return columns;
     }
 

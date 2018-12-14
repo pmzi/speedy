@@ -53,7 +53,7 @@ class MonacoEditor extends React.Component{
     componentDidUpdate(){
         // let selectedLanguage = this.props.selectedLanguage.latinName.toLowerCase();
         // monaco.editor.setModelLanguage(this._editor.getModel(), selectedLanguage)
-        console.log('s')
+        
         monaco.editor.setModelLanguage(this._editor.getModel(), this.props.language.toLowerCase() || 'javascript')
 
         this.editor.layout();
