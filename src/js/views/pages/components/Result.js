@@ -12,7 +12,7 @@ class Result extends React.Component{
 
     render(){
         return  (
-            <div className={`result ${this.props.show?'result--hide':''}`}>
+            <div className={`result ${this.props.show?'result--show':''}`}>
                 <i className='material-icons result__closeBtn' onClick={this.close.bind(this)}>close</i>
                 <header className='result__header'>
                     Result
@@ -20,12 +20,12 @@ class Result extends React.Component{
                 <div className='result__columnWrapper'>
                     {this.columns}
                 </div>
-                <div className={`result__compareResult ${this.props.sign?'result__compareResult--show':''}`}>
+                <div className={`result__compareResult ${this.props.sign.trim()!=''?'result__compareResult--show':''}`}>
                     <h3>
                         Compare Result:
                     </h3>
                     <span>
-                        (1) {this.props.sign?this.props.sign:''} (2)
+                        (1) {this.props.sign != ''?this.props.sign:''} (2)
                     </span>
                 </div>
             </div>
@@ -36,9 +36,11 @@ class Result extends React.Component{
 
         const columns = [];
 
+        let i =0;
+
         for(let item of this.props.functions){
 
-            columns.push(<div key={item} className='result__column'>
+            columns.push(<div key={i} className='result__column'>
                 <h3 className='result__column-header'>
                     Function
                 </h3>
@@ -47,8 +49,10 @@ class Result extends React.Component{
                 </div>
             </div>);
 
-        }
+            i++;
 
+        }
+        console.log(this.props.sign)
         return columns;
     }
 

@@ -1,4 +1,4 @@
-.result{
+.result {
     position: fixed;
     top: 0;
     left: 0;
@@ -10,43 +10,45 @@
 
     display: none;
 
-    &--show{
+    &--show {
         display: flex;
     }
 
     flex-direction: column;
 
-    &__closeBtn{
+    &__closeBtn {
         position: absolute;
         top: 1rem;
         left: 1rem;
+        cursor: pointer;
     }
 
-    &__header{
+    &__header {
         flex-basis: 8rem;
         line-height: 8rem;
         text-align: center;
         font-size: 3rem;
     }
 
-    &__columnWrapper{
+    &__columnWrapper {
         flex-grow: 1;
         padding-bottom: 2rem;
         display: flex;
     }
 
-    &__column{
+    &__column {
         flex: 1;
-        border-right: 0.1rem solid lighten($back-color,10);
-        &:last-child{
+        border-right: 0.1rem solid lighten($back-color, 10);
+
+        &:last-child {
             border: none;
         }
 
-        &-header{
+        &-header {
             text-align: center;
         }
 
-        &-function{
+        &-function {
             background-color: lighten($back-color, 10);
             width: 60%;
             margin: auto;
@@ -55,16 +57,16 @@
 
     }
 
-    &__compareResult{
+    &__compareResult {
         display: none;
-        &--show{
-            display: inline-flex;
+
+        &--show {
+            display: flex;
         }
+
         flex-basis: 10rem;
-        display: flex;
         flex-direction: column;
         align-items: center;
-        
-    }
 
+    }
 }
