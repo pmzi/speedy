@@ -11,7 +11,7 @@ class AjaxHelper {
             const data = [];
 
             await dataMap.forEach((value, key) => {
-                data.push(`(${value},${key})`);
+                data.push(`(${key},${value})`);
             });
             
             this.post(config.interpolating.url, qs.stringify({

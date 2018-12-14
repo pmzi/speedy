@@ -30,7 +30,7 @@ class Speedy {
 
                 const result = await js.run(modifiedCode);
 
-                resultMap.set(i, Number(result));
+                resultMap.set(i, result.split('*').length);
 
             }
 
