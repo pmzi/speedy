@@ -2,19 +2,20 @@ const React = require('react');
 
 const LoadingArea = require('./LoadingArea');
 
+const {connect} = require('react-redux');
+
 class LoadingSection extends React.Component{
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            show: false
-        }
-
+    componentDidUpdate(){
+        this.updateShowCase();
     }
 
-    componentDidUpdate(){
-        if(this.state.show){
+    componentDidMount(){
+        this.updateShowCase();
+    }
+
+    updateShowCase(){
+        if(this.props.show){
             this.refs.loadingSection.classList.remove('none');
             setTimeout(()=>{
                 this.refs.loadingSection.classList.remove('loadingSection--hidden');
@@ -31,7 +32,7 @@ class LoadingSection extends React.Component{
         return  (
             <div ref='loadingSection' className='loadingSection loadingSection--hidden none'>
                 <div className='loadingSection__box'>
-                    <LoadingArea />
+                    <LoadingArea text={this.props.text} status={this.props.status} />
                 </div>
             </div>
         );
@@ -39,4 +40,6 @@ class LoadingSection extends React.Component{
 
 }
 
-module.exports = LoadingSection;
+module.exports = connect((state)=>{
+    return state.general.loading;
+})(LoadingSection);

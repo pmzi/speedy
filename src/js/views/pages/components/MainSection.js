@@ -3,6 +3,7 @@ const React = require('react');
 const Button = require('./Button');
 const MonacoEditor = require('./MonacoEditor');
 
+const {connect} = require('react-redux');
 class MainSection extends React.Component{
 
     constructor(props){
@@ -37,7 +38,7 @@ class MainSection extends React.Component{
                         </div>
 
                         <div className='mainSection__slideAction'>
-                            <Button  value='<Calculate />' />
+                            <Button onClick={this.calculate.bind(this)} value='<Calculate />' />
                         </div>
 
                     </div>
@@ -70,7 +71,7 @@ class MainSection extends React.Component{
                         </div>
 
                         <div className='mainSection__slideAction'>
-                            <Button  value='<Compare />' />
+                            <Button onClick={this.compare.bind(this)} value='<Compare />' />
                         </div>
 
                     </div>
@@ -98,6 +99,43 @@ class MainSection extends React.Component{
         })
     }
 
+    compare(){
+        
+        this.showLoading('Comparing');
+
+        setTimeout(()=>{
+            this.doneLoading();
+        },1000)
+
+    }
+
+    calculate(){
+     
+        this.showLoading('Calculating');
+
+    }
+
+    showLoading(text){
+        this.props.dispatch({
+            type: 'LOADING_SHOW',
+            text
+        });
+    }
+
+    hideLoading(){
+        this.props.dispatch({
+            type: 'LOADING_HIDE'
+        });
+    }
+
+    doneLoading(){
+        this.props.dispatch({
+            type: 'LOADING_DONE'
+        });
+    }
+
 }
 
-module.exports = MainSection;
+module.exports = connect((state)=>{
+    return state.general;
+})(MainSection);

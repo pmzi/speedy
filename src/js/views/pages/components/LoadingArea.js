@@ -9,24 +9,20 @@ class LoadingArea extends React.Component{
             Status 0 -> BeingLoaded
             Status 1 -> Loaded
         */
-
-        this.state = {
-            status: 0
-        }
-
-        let statusClass = this.statusClass;
-        let statusText = this.statusText;
-
-        this.state = {
-            status: 0,
-            class: statusClass,
-            text: statusText
-        }
         
     }
 
+    get statusText(){
+        switch(this.props.status){
+            case 0:
+                return `${this.props.text}...`;
+            case 1:
+                return 'Done'
+        }
+    }
+
     get statusClass(){
-        switch(this.state.status){
+        switch(this.props.status){
             case 0:
                 return 'loadingArea--being';
             case 1:
@@ -34,20 +30,11 @@ class LoadingArea extends React.Component{
         }
     }
 
-    get statusText(){
-        switch(this.state.status){
-            case 1:
-                return 'Calculated';
-            default: 
-                return 'Calculating...';
-        }
-    }
-
     render(){
         return  (
-            <div className={`loadingArea ${this.state.class}`}>
+            <div className={`loadingArea ${this.statusClass}`}>
                 <div className='loadingArea__text'>
-                    {this.state.text}
+                    {this.statusText}
                 </div>
                 <div className='loadingArea__wave'>
 
