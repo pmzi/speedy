@@ -38,9 +38,12 @@ class MonacoEditor extends React.Component{
                 theme:'vs-dark'
             });
 
+            window[this.props.id] = this._editor;
+
             window.addEventListener('resize',()=>{
                 this._editor.layout();                
-            })
+            }
+        )
         });
 
     }
