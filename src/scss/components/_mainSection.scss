@@ -39,6 +39,7 @@
 
     &__slideCont{
         display: flex;
+        margin-bottom: 2rem;
     }
 
     &__slide:first-child>&__slideCont{
@@ -70,6 +71,11 @@
     &__editor{
         height: 30rem;
         margin-bottom: 1rem;
+    }
+
+    &__footer{
+        text-align: center;
+        line-height: 5rem;
     }
 
 }

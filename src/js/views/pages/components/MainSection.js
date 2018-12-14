@@ -1,7 +1,10 @@
 const React = require('react');
 
 const Button = require('./Button');
+const Link = require('./Link');
 const MonacoEditor = require('./MonacoEditor');
+
+const config = require('../../../../config/config');
 
 const Speedy = require('../helpers/Speedy');
 
@@ -81,7 +84,7 @@ class MainSection extends React.Component{
             </div>
 
             <footer className='footer mainSection__footer'>
-
+                Fork me on <Link href={config.general.github} className='highlight'> Github</Link>
             </footer>
 
         </React.Fragment>);
