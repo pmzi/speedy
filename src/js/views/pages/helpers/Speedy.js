@@ -4,29 +4,73 @@ const js = new JS();
 
 const AjaxHelper = require('./AjaxHelper');
 
+const interpolating = require('interpolating-polynomial');
+
+
 class Speedy {
 
-    static async calculate(code) {
+    static async calculate(...codes) {
 
-        const resultMap = new Map();
+        const result = {
+            functions: [],
+            functionTexts: []
+        };
 
-        for (let i = 0; i < 5; i++) {
+        // Let's fetch functions
 
-            const modifiedCode = `const n = ${i};${code}`;
+        for (let code of codes) {
 
-            const result = await js.run(modifiedCode);
+            const resultMap = new Map();
 
-            resultMap.set(i, Number(result));
+            for (let i = 0; i < 5; i++) {
+
+                const modifiedCode = `const n = ${i};${code}`;
+
+                const result = await js.run(modifiedCode);
+
+                resultMap.set(i, Number(result));
+
+            }
+
+            const apiResult = await AjaxHelper.getInterpolating(resultMap);
+
+            const resultMapArray = [];
+
+            await resultMap.forEach((value, key) => {
+                resultMapArray.push([key, value])
+            })
+
+            const fn = interpolating(resultMapArray);
+
+            result.functions.push(fn);
+
+            result.functionTexts.push(apiResult.results);
 
         }
 
-        const result = await AjaxHelper.getInterpolating(resultMap)
-
-        return result.results;
+        return result;
 
     }
 
-    static compare() {
+    static async compare(functions) {
+
+        const returnedNumbers = [];
+
+        for(let fn of functions){
+
+            returnedNumbers.push(fn(10000000));
+
+        }
+
+        // This works for only 2 functions
+
+        if(returnedNumbers[0] > returnedNumbers[1]){
+            return '>';
+        }else if(returnedNumbers[0] < returnedNumbers[1]){
+            return '<';
+        }
+
+        return '=';
 
     }
 
